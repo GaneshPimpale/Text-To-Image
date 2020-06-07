@@ -66,7 +66,7 @@ class Nlp:
                 temp_string = internal_list[0]
                 self.properties[count] = temp_string
 
-    """ Determine the order of the objects when stacked to create an image (Z axis)"""
+    """ Determine the order of the objects when stacked to create an image (Z axis) """
     def determine_order(self):
 
         pass
@@ -91,39 +91,12 @@ class Nlp:
 
         return raw_lists
 
-    """ Parse the ROP lists into dataFrame format
-    :return rop_list: list containing three lists in R, O, P order for dataFrame
+    """ return the ROP lists
+    :return rop_lists: list containing lists in R, O, P order
     """
-    def parse_rop_chart_data(self):
-        rop_relation = self.relation
-        rop_order = self.order
-        rop_properties = self.properties
+    def rop_lists_return(self):
+        rop_lists = [self.relation,
+                     self.order,
+                     self.properties]
 
-        # TODO: make sure the relation list is compliant with the parsing method
-        # Parse the relation list:
-        for relation in rop_relation:
-            index = rop_relation.index(relation)
-            if index % 2 == 0:
-                rop_relation.insert(index, "-")
-
-        # Parse the order list:
-        for subject in rop_order:
-            index = rop_order.index(subject)
-            if index % 2 == 1:
-                rop_order.insert(index, "|")
-
-        # Parse the properties list:
-        for prop in rop_properties:
-            index = rop_properties.index(prop)
-            if index % 2 == 1:
-                rop_properties.insert(index, "-")
-
-        rop_list = [rop_relation, rop_order, rop_properties]
-        return rop_list
-
-    """ Parse the ROP lists into an  
-    :return rop_code: list containing three lists in R, O, P order for image code
-    """
-    def parse_rop_image_code(self):
-        # Currently not implemented
-        pass
+        return rop_lists
